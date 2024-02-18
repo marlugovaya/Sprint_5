@@ -1,8 +1,10 @@
+import time
+
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from Sprint_5.locators import TestLocators
-from Sprint_5.data import TestData, generate_email, login
-
+from Sprint_5.data import TestData
+from Sprint_5.helpers import generate_email
 
 class TestRegistration:
 
@@ -20,8 +22,10 @@ class TestRegistration:
 
         driver.find_element(*TestLocators.REGISTRATION_BUTTON).click()
         WebDriverWait(driver, 5).until(expected_conditions.url_to_be("https://stellarburgers.nomoreparties.site/login"))
-        login(driver, new_login, new_password)
-
+        inputs = driver.find_elements(*TestLocators.INPUTS_FOR_LOGIN)
+        inputs[0].send_keys(new_login)
+        inputs[1].send_keys(new_password)
+        driver.find_element(*TestLocators.LOGIN_BUTTON).click()
         driver.find_element(*TestLocators.PERSONAL_ACCOUNT_BUTTON).click()
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(TestLocators.PROFILE_BUTTON))
         assert (driver.find_element(*TestLocators.PROFILE_BUTTON).is_displayed())

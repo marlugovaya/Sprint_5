@@ -17,4 +17,7 @@ class TestLocators:
     REGISTRATION_BUTTON = By.XPATH, "//button[@class='button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_medium__3zxIa']"
     INCORRECT_PASSWORD_ERROR = By.XPATH, "//p[@class='input__error text_type_main-default']"
 
+    INPUT_PASSWORD = By.XPATH, "//input[@name='Пароль']"
+    INPUT_EMAIL = By.XPATH, "//input[ @ name = 'name']"
+
 

@@ -3,11 +3,8 @@ from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
-
 from Sprint_5.locators import TestLocators
-from Sprint_5.data import TestData, login
-
-import time
+from Sprint_5.data import TestData
 
 class TestLogin:
 
@@ -15,7 +12,9 @@ class TestLogin:
     def test_login_main(self, driver):
         driver.find_element(*TestLocators.LOGIN_TO_ACCOUNT_BUTTON).click()
 
-        login(driver, TestData.GOOD_LOGIN_PASSWORD[0], TestData.GOOD_LOGIN_PASSWORD[1])
+        driver.find_element(*TestLocators.INPUT_EMAIL).send_keys(TestData.GOOD_LOGIN_PASSWORD[0])
+        driver.find_element(*TestLocators.INPUT_PASSWORD).send_keys(TestData.GOOD_LOGIN_PASSWORD[1])
+        driver.find_element(*TestLocators.LOGIN_BUTTON).click()
 
         driver.find_element(*TestLocators.PERSONAL_ACCOUNT_BUTTON).click()
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(TestLocators.PROFILE_BUTTON))
@@ -25,7 +24,9 @@ class TestLogin:
     def test_login_account(self, driver):
         driver.find_element(*TestLocators.PERSONAL_ACCOUNT_BUTTON).click()
 
-        login(driver, TestData.GOOD_LOGIN_PASSWORD[0], TestData.GOOD_LOGIN_PASSWORD[1])
+        driver.find_element(*TestLocators.INPUT_EMAIL).send_keys(TestData.GOOD_LOGIN_PASSWORD[0])
+        driver.find_element(*TestLocators.INPUT_PASSWORD).send_keys(TestData.GOOD_LOGIN_PASSWORD[1])
+        driver.find_element(*TestLocators.LOGIN_BUTTON).click()
 
         driver.find_element(*TestLocators.PERSONAL_ACCOUNT_BUTTON).click()
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(TestLocators.PROFILE_BUTTON))
@@ -37,7 +38,9 @@ class TestLogin:
         driver.find_element(*TestLocators.REGISTRATION_LINK).click()
         driver.find_element(*TestLocators.LOGIN_LINK).click()
 
-        login(driver, TestData.GOOD_LOGIN_PASSWORD[0], TestData.GOOD_LOGIN_PASSWORD[1])
+        driver.find_element(*TestLocators.INPUT_EMAIL).send_keys(TestData.GOOD_LOGIN_PASSWORD[0])
+        driver.find_element(*TestLocators.INPUT_PASSWORD).send_keys(TestData.GOOD_LOGIN_PASSWORD[1])
+        driver.find_element(*TestLocators.LOGIN_BUTTON).click()
 
         driver.find_element(*TestLocators.PERSONAL_ACCOUNT_BUTTON).click()
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(TestLocators.PROFILE_BUTTON))
@@ -49,7 +52,9 @@ class TestLogin:
         driver.find_element(*TestLocators.PASSWORD_RECOVERY_LINK).click()
         driver.find_element(*TestLocators.LOGIN_LINK).click()
 
-        login(driver, TestData.GOOD_LOGIN_PASSWORD[0], TestData.GOOD_LOGIN_PASSWORD[1])
+        driver.find_element(*TestLocators.INPUT_EMAIL).send_keys(TestData.GOOD_LOGIN_PASSWORD[0])
+        driver.find_element(*TestLocators.INPUT_PASSWORD).send_keys(TestData.GOOD_LOGIN_PASSWORD[1])
+        driver.find_element(*TestLocators.LOGIN_BUTTON).click()
 
         driver.find_element(*TestLocators.PERSONAL_ACCOUNT_BUTTON).click()
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(TestLocators.PROFILE_BUTTON))
